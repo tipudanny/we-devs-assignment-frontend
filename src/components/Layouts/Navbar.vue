@@ -3,7 +3,9 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="#">
-                    <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma" width="112" height="28">
+                    <img src="https://i0.wp.com/us.wordcamp.org/2015/files/2015/09/wedevs-logo1.png?fit=1000%2C322&ssl=1"
+                         style="min-height: 60px;min-width: 200px"
+                         alt="We Devs">
                 </a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">

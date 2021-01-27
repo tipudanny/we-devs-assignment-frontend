@@ -1,0 +1,25 @@
+.menu-list li a.is-active span.icon {
+    color: #ffffff;
+}
+.menu-list li ul {
+    //padding-left: 0.15em;
+}
+
+.icon.is-small {
+    height: 1rem;
+    width: 1rem;
+    color: #7957d5;
+    margin-right: 10px;
+}
+
+a.is-active.is-expanded span.icon {
+    color: #ffffff;
+}
+a.router-link-active span.icon {
+    color: #ffffff;
+}
+
+.menu-list a.router-link-active {
+    background-color: #7957d5;
+    color: #fff;
+}
