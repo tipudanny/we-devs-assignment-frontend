@@ -20,7 +20,7 @@
             <template #end>
                 <b-navbar-item tag="div">
                     <div class="buttons">
-                        <a class=" is-primary">
+                        <a class=" is-primary" @click="logout()">
                             <strong>Logout</strong>
                         </a>
                     </div>
@@ -31,8 +31,33 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-    name: "Navbar"
+    name: "Navbar",
+    mounted() {
+        if ( localStorage.token !='' && localStorage.token){
+            this.token = localStorage.token
+            axios.defaults.headers.common = {'Authorization': `Bearer ${this.token}`};
+        }
+    },
+    date(){
+        return{
+            token:'',
+        }
+    },
+    methods:{
+        logout(){
+            axios.post('http://we-devs.api/api/v1/logout').then((data)=>{
+                if (data.data.code == 'logout') {
+                    localStorage.token = '';
+                    localStorage.expired_out = '';
+                    this.token = '';
+                    this.$router.push('/login')
+                }
+            }).catch(error => {});
+        },
+    }
 }
 </script>
 

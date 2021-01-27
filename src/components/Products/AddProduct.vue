@@ -4,7 +4,6 @@
         <div class="columns">
             <div class="column"></div>
             <div class="column  is-half">
-
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
                         <label class="label">Title</label>
@@ -78,7 +77,6 @@
             </div>
             <div class="column"></div>
         </div>
-
     </div>
 </template>
 

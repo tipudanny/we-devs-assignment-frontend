@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Auth from "../authentication/Auth"
+import axios from "axios"
 import router from './router'
 import store from './store'
 import Buefy from 'buefy'
@@ -13,6 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(fas);
 Vue.component('vue-fontawesome', FontAwesomeIcon);
 
+window.axios = require('axios');
+Vue.use(Auth);
 Vue.use(Buefy, {
   defaultIconComponent: "vue-fontawesome",
   defaultIconPack: "fas",
