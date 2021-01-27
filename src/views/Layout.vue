@@ -3,15 +3,11 @@
         <Navbar />
         <div class="columns is-mobile">
             <div class="column">
-                <Menu />
-            </div>
-            <div class="column is-four-fifths">
                 <div class="card">
                     <div class="card-content">
                         <router-view></router-view>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

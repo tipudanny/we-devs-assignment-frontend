@@ -18,10 +18,7 @@ const routes = [
                 { path: '/product', name: 'Product ',
                     component: function () { return import('@/components/Products/AllProduct') }
                 },
-                { path: '/product/all-product', name: 'All Product ',
-                    component: function () { return import('@/components/Products/AllProduct') }
-                },
-                { path: '/product/create-product', name: 'Product-Add',
+                { path: 'create-product', name: 'Product-Add',
                     component: function () { return import('@/components/Products/AddProduct') }
                 },
             ]

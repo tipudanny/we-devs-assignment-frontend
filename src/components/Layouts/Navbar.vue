@@ -1,20 +1,32 @@
 <template>
     <div class="m-3">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="#">
+        <b-navbar>
+            <template #brand>
+                <b-navbar-item tag="router-link" :to="{ path: '/' }">
                     <img src="https://i0.wp.com/us.wordcamp.org/2015/files/2015/09/wedevs-logo1.png?fit=1000%2C322&ssl=1"
-                         style="min-height: 60px;min-width: 200px"
+                         style="min-height: 50px;min-width:100px"
                          alt="We Devs">
-                </a>
+                </b-navbar-item>
+            </template>
+            <template #start>
+                <b-navbar-item href="#">
+                    <router-link to="/product">All Product</router-link>
+                </b-navbar-item>
+                <b-navbar-item href="#">
+                    <router-link to="/create-product">Add Product</router-link>
+                </b-navbar-item>
+            </template>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-        </nav>
+            <template #end>
+                <b-navbar-item tag="div">
+                    <div class="buttons">
+                        <a class=" is-primary">
+                            <strong>Logout</strong>
+                        </a>
+                    </div>
+                </b-navbar-item>
+            </template>
+        </b-navbar>
     </div>
 </template>
 

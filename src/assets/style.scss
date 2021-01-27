@@ -19,7 +19,11 @@ a.router-link-active span.icon {
     color: #ffffff;
 }
 
-.menu-list a.router-link-active {
+.navbar-item a.router-link-active {
     background-color: #7957d5;
     color: #fff;
+    padding: 7px;
+}
+.navbar-item a {
+    padding: 7px;
 }

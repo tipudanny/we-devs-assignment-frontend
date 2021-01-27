@@ -2,7 +2,8 @@
     <div>
         <h4 class="title is-4">All Products</h4>
         <section>
-            <table class="table is-bordered is-fullwidth has-text-centered">
+            <div class="table-container">
+                <table class="table is-bordered is-fullwidth has-text-centered">
                 <thead>
                     <tr class="">
                         <th>#Sl</th>
@@ -27,6 +28,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </section>
         <section class="mt-3">
             <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
