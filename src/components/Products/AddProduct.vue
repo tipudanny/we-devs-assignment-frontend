@@ -1,10 +1,12 @@
 <template>
-$END$
+    <div>
+        <p>Add New Product.</p>
+    </div>
 </template>
 
 <script>
 export default {
-name: "AddProduct"
+    name: "AddProduct"
 }
 </script>
 

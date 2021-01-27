@@ -1,5 +1,7 @@
 <template>
-$END$
+    <div>
+        <p>This is login page.</p>
+    </div>
 </template>
 
 <script>

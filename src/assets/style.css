@@ -1,0 +1,10 @@
+
+.icon.is-small {
+    height: 1rem;
+    width: 1rem;
+    color: #7957d5;
+}
+
+a.is-active.is-expanded span.icon {
+    color: #ffffff;
+}
