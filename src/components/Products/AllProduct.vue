@@ -25,9 +25,13 @@
                         </td>
                         <td>
                             <div class="buttons is-inline-flex">
-                                <router-link :to=" '/product/'+product.id" class="button is-warning is-small">
+                                <router-link :to=" '/product/view/'+product.id" class="button is-info is-small">
+                                    View
+                                </router-link>
+                                <router-link :to=" '/product/edit/'+product.id" class="button is-warning is-small">
                                     Edit
                                 </router-link>
+
                                 <button class="button is-danger is-small">Delete</button>
                             </div>
                         </td>

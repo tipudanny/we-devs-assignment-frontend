@@ -20,7 +20,10 @@ const routes = [
                 { path: '/product', name: 'Product ',
                     component: function () { return import('@/components/Products/AllProduct') }
                 },
-                { path: '/product/:id', name: 'Product Update',
+                { path: '/product/view/:id', name: 'Product Update',
+                    component: function () { return import('@/components/Products/ViewProduct') }
+                },
+                { path: '/product/edit/:id', name: 'Product Update',
                     component: function () { return import('@/components/Products/EditProduct') }
                 },
                 { path: 'create-product', name: 'Product-Add',

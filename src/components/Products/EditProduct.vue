@@ -125,13 +125,13 @@ export default {
                 });
         },
         onFileChange(e) {
-            if(e.target.files[0]['type']!=='image/jpeg')
+            console.log(e.target.files[0]['type'])
+            if( e.target.files[0]['type']==='image/jpeg' ||
+                e.target.files[0]['type']==='image/png' ||
+                e.target.files[0]['type']==='image/svg+xml' ||
+                e.target.files[0]['type']==='image/webp' ||
+                e.target.files[0]['type']==='image/gif' )
             {
-                console.log('not image');
-                this.isValid = false;
-                this.isDanger = true;
-            }
-            else{
                 this.isValid = true;
                 this.isDanger = false;
                 this.productInfo.image = e.target.files[0];
@@ -141,6 +141,12 @@ export default {
                 reader.onload = e =>{
                     this.image = e.target.result;
                 }
+
+            }
+            else{
+                console.log('not image');
+                this.isValid = false;
+                this.isDanger = true;
             }
 
         },
@@ -162,7 +168,7 @@ export default {
             axios.post('http://we-devs.api/api/v1/products/'+this.id, formData)
                 .then(({data}) => {
                     //console.log(data);
-                    if (data.code = 'success'){
+                    if (data.code == 'success'){
                         this.$buefy.notification.open({
                             message: 'Update Successfully!',
                             type: 'is-success'
