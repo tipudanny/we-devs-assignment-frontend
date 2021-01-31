@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(product,index) in products " :key="index">
+                    <tr v-for="(product,index) in products.data " :key="index">
                         <th>{{++index}}</th>
                         <td width="25%">{{product.title}}</td>
                         <td width="35%">{{product.description}}</td>
@@ -40,17 +40,24 @@
             </table>
             </div>
         </section>
-        <section class="mt-3">
-            <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
-                <a class="pagination-previous">Previous</a>
-                <a class="pagination-next">Next page</a>
-                <ul class="pagination-list">
-                    <li><a class="pagination-link is-current">1</a></li>
-                    <li><a class="pagination-link">2</a></li>
-                    <li><span class="pagination-ellipsis">&hellip;</span></li>
-                    <li><a class="pagination-link" >3</a></li>
-                </ul>
-            </nav>
+        <section class="mt-4">
+            total: {{to}}/{{total}}
+            <b-pagination
+                :total="total"
+                :current.sync="current"
+                :range-before="rangeBefore"
+                :range-after="rangeAfter"
+                :size="size"
+                :rounded="isRounded"
+                :per-page="perPage"
+                :icon-prev="prevIcon"
+                :icon-next="nextIcon"
+                aria-next-label="Next page"
+                aria-previous-label="Previous page"
+                aria-current-label="Current page"
+                v-on:change="getAllProducts"
+            >
+            </b-pagination>
         </section>
     </div>
 </template>
@@ -69,17 +76,33 @@ export default {
     },
     data() {
         return {
+
             token:'',
-            products:'',
+            products:{},
+            total: 0,
+            current: 1,
+            perPage: 0,
+            rangeBefore: 2,
+            rangeAfter: 1,
+            size: 'is-small',
+            isRounded: true,
+            prevIcon: 'chevron-left',
+            nextIcon: 'chevron-right',
+            to:0,
+
         }
     },
     methods:{
-        getAllProducts()
+        getAllProducts(page = 1)
         {
-            axios.get('http://we-devs.api/api/v1/products?page=1').then((data)=>{
+            axios.get('http://we-devs.api/api/v1/products?page=' + page).then((data)=>{
                 //console.log(data)
                 if (data.data) {
-                    this.products = data.data.data
+                    this.products = data.data;
+                    this.total = this.products.meta.total;
+                    this.current = this.products.meta.current_page;
+                    this.perPage = this.products.meta.per_page;
+                    this.to = this.products.meta.to;
                 }
             }).catch(error => {});
         }

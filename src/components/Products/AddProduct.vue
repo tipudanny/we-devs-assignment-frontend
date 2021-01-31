@@ -170,8 +170,7 @@ export default {
                     console.log(getError.title[0]);
                     if (getError.title[0]){
                         Notification.open({
-                            message: getError.title[0],
-                            type: 'is-danger'
+                            message: getError.title[0], type: 'is-danger'
                         });
                     }
                 }

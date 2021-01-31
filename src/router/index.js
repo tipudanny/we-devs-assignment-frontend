@@ -10,17 +10,17 @@ const routes = [
         path: '/login', name: 'Login',
         component: function () {return import('../views/Login')}
     },
-    { path: '/', name: 'Product', component: Layout,
+    { path: '/',  component: Layout,
         meta: {authAccess: true},
         children:
             [
                 { path: '/', name: 'Product ',
                     component: function () { return import('@/components/Products/AllProduct') }
                 },
-                { path: '/product', name: 'Product ',
+                { path: '/product', name: 'All Product ',
                     component: function () { return import('@/components/Products/AllProduct') }
                 },
-                { path: '/product/view/:id', name: 'Product Update',
+                { path: '/product/view/:id', name: 'Product Details',
                     component: function () { return import('@/components/Products/ViewProduct') }
                 },
                 { path: '/product/edit/:id', name: 'Product Update',
