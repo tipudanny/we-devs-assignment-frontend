@@ -151,6 +151,7 @@ export default {
             this.loadingComponent = this.$buefy.loading.open({
                 container: this.isFullPage ? null : this.$refs.element.$el
             })
+            setTimeout(() => this.loadingComponent.close(), 3 * 1000)
         },
         loadingClose()
         {
