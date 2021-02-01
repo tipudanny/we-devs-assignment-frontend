@@ -19,7 +19,7 @@
                         <td width="25%">{{product.title}}</td>
                         <td width="35%">{{product.description}}</td>
                         <td>
-                            <figure class="image is-128x128">
+                            <figure class="image is-80x80">
                                 <img v-bind:src="'http://we-devs.api'+product.image">
                             </figure>
                         </td>
@@ -32,7 +32,7 @@
                                     Edit
                                 </router-link>
 
-                                <button class="button is-danger is-small">Delete</button>
+                                <button v-on:click="deleteProduct(product.id)" class="button is-danger is-small">Delete</button>
                             </div>
                         </td>
                     </tr>
@@ -73,6 +73,7 @@ export default {
             axios.defaults.headers.common = {'Authorization': `Bearer ${this.token}`};
         }
         this.getAllProducts()
+
     },
     data() {
         return {
@@ -89,12 +90,15 @@ export default {
             prevIcon: 'chevron-left',
             nextIcon: 'chevron-right',
             to:0,
+            isFullPage: true,
+            loadingComponent:'',
 
         }
     },
     methods:{
         getAllProducts(page = 1)
         {
+            this.loadingOpen()
             axios.get('http://we-devs.api/api/v1/products?page=' + page).then((data)=>{
                 //console.log(data)
                 if (data.data) {
@@ -103,9 +107,53 @@ export default {
                     this.current = this.products.meta.current_page;
                     this.perPage = this.products.meta.per_page;
                     this.to = this.products.meta.to;
+                    this.loadingClose();
                 }
             }).catch(error => {});
-        }
+        },
+        deleteProduct(id)
+        {
+            this.$buefy.dialog.confirm({
+                title: 'Deleting account',
+                message: 'Are you sure you want to <b>delete</b> this product? This action cannot be undone.',
+                confirmText: 'Delete Product',
+                type: 'is-danger',
+                hasIcon: true,
+                onConfirm: () => {
+                    this.loadingOpen();
+                    axios.delete('http://we-devs.api/api/v1/products/'+id).then((response)=>{
+                        if ( response.data.code == 'deleted' ){
+                            this.getAllProducts();
+                            this.$buefy.notification.open({
+                                message: 'Success :: Product Deleted !',
+                                type: 'is-success'
+                            });
+                        }
+                        else {
+                            this.$buefy.notification.open({
+                                message: 'ERROR :: Something Went Wrong !',
+                                type: 'is-danger'
+                            });
+                        }
+
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                    this.loadingClose();
+
+                }
+            })
+        },
+        loadingOpen()
+        {
+            this.loadingComponent = this.$buefy.loading.open({
+                container: this.isFullPage ? null : this.$refs.element.$el
+            })
+        },
+        loadingClose()
+        {
+            setTimeout(() => this.loadingComponent.close(), 1 * 100)
+        },
     }
 }
 </script>

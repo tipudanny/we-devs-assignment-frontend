@@ -1,3 +1,6 @@
+/*.nav-bg{
+    background: #1113122b;
+}*/
 .menu-list li a.is-active span.icon {
     color: #ffffff;
 }
@@ -27,3 +30,14 @@ a.router-link-active span.icon {
 .navbar-item a {
     padding: 7px;
 }
+.is-80x80 {
+    height: 80px !important;
+    width: 80px !important;
+    overflow: hidden;
+}
+.is-200x200 {
+    height: 200px !important;
+    //width: 200px !important;
+    overflow: hidden;
+}
+

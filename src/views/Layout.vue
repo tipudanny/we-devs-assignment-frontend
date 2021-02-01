@@ -10,17 +10,21 @@
                 </div>
             </div>
         </div>
+        <Footer />
     </div>
 </template>
 
 <script>
 import Menu from "@/components/Layouts/Menu";
 import Navbar from "@/components/Layouts/Navbar";
+import Footer from "@/components/Layouts/footer";
 
 export default {
     name: 'Layout',
     components: {
-        Menu,Navbar
+        Footer,
+        Menu,
+        Navbar
     }
 }
 </script>

@@ -47,7 +47,7 @@
 
 <script>
     import axios from "axios";
-
+    import { NotificationProgrammatic as Notification } from 'buefy';
     export default {
         name: "Login",
         mounted() {
@@ -62,21 +62,42 @@
                     email:'tipu@gmail.com',
                     password:'12345678',
                 },
+                isFullPage: true,
+                loadingComponent:'',
             }
         },
         methods:{
             login(){
+                this.loadingOpen();
                 axios.post('http://we-devs.api/api/v1/login',this.loginInfo).then((data)=>{
                     if (data.data.access_token && data.data.access_token != ''){
-                        //this.$toastr.s("Login Successfully","SUCCESS::");
+                        this.$buefy.notification.open({
+                            message: 'Login Successfully!',
+                            type: 'is-success',
+                        });
                         localStorage.token = data.data.access_token;
                         localStorage.expired_out = new Date().getTime()+data.data.expires_in*1000;
                         this.$router.push('/product')
                     }
+                    this.loadingClose();
                 }).catch(error => {
-                    //this.$toastr.e("Username and Password Error !!","ERROR::");
+                    this.loadingClose();
+                    Notification.open({
+                        message: 'Credential Error!',
+                        type: 'is-danger',
+                    });
                     console.log(error);
                 });
+            },
+            loadingOpen()
+            {
+                this.loadingComponent = this.$buefy.loading.open({
+                    container: this.isFullPage ? null : this.$refs.element.$el
+                })
+            },
+            loadingClose()
+            {
+                setTimeout(() => this.loadingComponent.close(), 1 * 100)
             },
         }
     }

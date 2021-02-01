@@ -1,6 +1,6 @@
 <template>
-    <div class="m-3">
-        <b-navbar>
+    <div >
+        <b-navbar class="mt-4 nav-bg">
             <template #brand>
                 <b-navbar-item tag="router-link" :to="{ path: '/' }">
                     <img src="https://i0.wp.com/us.wordcamp.org/2015/files/2015/09/wedevs-logo1.png?fit=1000%2C322&ssl=1"
@@ -44,10 +44,13 @@ export default {
     date(){
         return{
             token:'',
+            isFullPage: true,
+            loadingComponent:'',
         }
     },
     methods:{
         logout(){
+            this.loadingOpen();
             axios.post('http://we-devs.api/api/v1/logout').then((data)=>{
                 if (data.data.code == 'logout') {
                     localStorage.token = '';
@@ -55,7 +58,18 @@ export default {
                     this.token = '';
                     this.$router.push('/login')
                 }
+                this.loadingClose();
             }).catch(error => {});
+        },
+        loadingOpen()
+        {
+            this.loadingComponent = this.$buefy.loading.open({
+                container: this.isFullPage
+            })
+        },
+        loadingClose()
+        {
+            setTimeout(() => this.loadingComponent.close(), 1 * 100)
         },
     }
 }
