@@ -9,6 +9,7 @@
                         <th>#Sl</th>
                         <th>Titile</th>
                         <th>Description</th>
+                        <th>Price</th>
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
@@ -16,8 +17,9 @@
                 <tbody>
                     <tr v-for="(product,index) in products.data " :key="index">
                         <th>{{++index}}</th>
-                        <td width="25%">{{product.title}}</td>
-                        <td width="35%">{{product.description}}</td>
+                        <td width="20%">{{product.title}}</td>
+                        <td width="30%">{{product.description}}</td>
+                        <td width="10%">{{product.price}}</td>
                         <td>
                             <figure class="image is-80x80">
                                 <img v-bind:src="'http://we-devs.api'+product.image">

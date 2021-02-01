@@ -1,3 +1,4 @@
+import axios from "axios";
 export default function (Vue) {
     Vue.auth = {
 
@@ -11,9 +12,17 @@ export default function (Vue) {
                 return null
             }
 
-            if (expires_time > expired_out) {
-                this.destroyToken()
-                return null
+            if (expires_time > (expired_out-1) ) {
+                axios.defaults.headers.common = {'Authorization': `Bearer ${token}`};
+                axios.post('http://we-devs.api/api/v1/refresh').then((data)=>{
+                    console.log('ok');
+                    if (data.data.access_token && data.data.access_token != ''){
+                        localStorage.token = data.data.access_token;
+                        localStorage.expired_out = new Date().getTime()+data.data.expires_in*1000;
+                    }
+                })
+                //this.destroyToken()
+                return token
             }
             else {
                 return token

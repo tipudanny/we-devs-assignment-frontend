@@ -18,6 +18,7 @@
                             </div>
                             <div class="media-content">
                                 <p class="title is-4">{{productInfo.title}}</p>
+                                <p class="subtitle is-6"><strong class="has-text-danger">Price: {{productInfo.price}} tk</strong></p>
                             </div>
                         </div>
 
