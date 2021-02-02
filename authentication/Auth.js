@@ -23,11 +23,6 @@ export default function (Vue) {
                 })
                 return token
             }
-            if(expires_time > expired_out)
-            {
-                this.destroyToken()
-                return null
-            }
             else {
                 return token
             }
