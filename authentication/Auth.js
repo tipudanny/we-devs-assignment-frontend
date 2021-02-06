@@ -12,16 +12,9 @@ export default function (Vue) {
                 return null
             }
 
-            if (expires_time > (expired_out-1000) ) {
-                axios.defaults.headers.common['Authorization'] = 'Bearer '+token;
-                axios.post('http://we-devs.api/api/v1/refresh').then((data)=>{
-                    if (data.data.access_token && data.data.access_token != ''){
-                        localStorage.token = data.data.access_token;
-                        localStorage.expired_out = new Date().getTime()+data.data.expires_in*1000;
-                        location.reload();
-                    }
-                })
-                return token
+            if (expires_time > expired_out ){
+                this.destroyToken()
+                return null
             }
             else {
                 return token
