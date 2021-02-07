@@ -16,6 +16,8 @@ Vue.component('vue-fontawesome', FontAwesomeIcon);
 window.axios = require('axios');
 Vue.use(Auth);
 
+Vue.prototype.apiBaseUrl = 'http://we-devs.api/';
+
 
 Vue.use(Buefy, {
   defaultIconComponent: "vue-fontawesome",

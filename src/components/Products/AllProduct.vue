@@ -22,7 +22,7 @@
                         <td width="10%">{{product.price}}</td>
                         <td>
                             <figure class="image is-80x80">
-                                <img v-bind:src="'http://we-devs.api'+product.image">
+                                <img v-bind:src="apiUrl+product.image">
                             </figure>
                         </td>
                         <td>
@@ -70,6 +70,7 @@ import axios from "axios";
 export default {
     name: 'AllProduct',
     mounted() {
+        this.apiUrl = this.apiBaseUrl;
         if ( localStorage.token !='' && localStorage.token){
             this.token = localStorage.token
             axios.defaults.headers.common = {'Authorization': `Bearer ${this.token}`};
@@ -79,7 +80,7 @@ export default {
     },
     data() {
         return {
-
+            apiUrl:'',
             token:'',
             products:{},
             total: 0,
@@ -101,7 +102,7 @@ export default {
         getAllProducts(page = 1)
         {
             this.loadingOpen()
-            axios.get('http://we-devs.api/api/v1/products?page=' + page).then((data)=>{
+            axios.get(this.apiUrl+'api/v1/products?page=' + page).then((data)=>{
                 //console.log(data)
                 if (data.data) {
                     this.products = data.data;
@@ -123,7 +124,7 @@ export default {
                 hasIcon: true,
                 onConfirm: () => {
                     this.loadingOpen();
-                    axios.delete('http://we-devs.api/api/v1/products/'+id).then((response)=>{
+                    axios.delete(this.apiUrl+'api/v1/products/'+id).then((response)=>{
                         if ( response.data.code == 'deleted' ){
                             this.getAllProducts();
                             this.$buefy.notification.open({

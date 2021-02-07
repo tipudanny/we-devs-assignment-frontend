@@ -101,6 +101,7 @@ import { NotificationProgrammatic as Notification } from 'buefy'
 export default {
     name: "AddProduct",
     mounted() {
+        this.apiUrl = this.apiBaseUrl;
         if ( localStorage.token !='' && localStorage.token){
             this.token = localStorage.token
             axios.defaults.headers.common = {'Authorization': `Bearer ${this.token}`};
@@ -110,6 +111,7 @@ export default {
     },
     data(){
         return{
+            apiUrl:'',
             token:'',
             productInfo:{
                 title:'',
@@ -168,7 +170,7 @@ export default {
             formData.append('title', this.productInfo.title);
             formData.append('description', this.productInfo.description);
             formData.append('price', this.productInfo.price);
-            axios.post('http://we-devs.api/api/v1/products', formData)
+            axios.post(this.apiUrl+'api/v1/products', formData)
                 .then(({data}) => {
                     console.log(data);
                     if (data.code == 'success'){

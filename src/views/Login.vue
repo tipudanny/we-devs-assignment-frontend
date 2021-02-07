@@ -59,9 +59,11 @@
             if ( localStorage.token !=''  && localStorage.token){
                 this.token = localStorage.token
             }
+            this.apiUrl = this.apiBaseUrl;
         },
         data(){
             return{
+                apiUrl:'',
                 token:'',
                 loginInfo:{
                     email:'tipu@gmail.com',
@@ -74,7 +76,7 @@
         methods:{
             login(){
                 this.loadingOpen();
-                axios.post('http://we-devs.api/api/v1/login',this.loginInfo).then((data)=>{
+                axios.post(this.apiUrl+'api/v1/login',this.loginInfo).then((data)=>{
                     if (data.data.access_token && data.data.access_token != ''){
                         this.$buefy.notification.open({
                             message: 'Login Successfully!',

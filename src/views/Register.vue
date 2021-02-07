@@ -80,9 +80,11 @@ import { NotificationProgrammatic as Notification } from 'buefy';
 export default {
     name: "Register",
     mounted() {
+        this.apiUrl = this.apiBaseUrl;
     },
     data(){
         return{
+            apiUrl:'',
             token:'',
             userInfo:{
                 name:'tipu danny',
@@ -97,7 +99,7 @@ export default {
     methods:{
         register(){
             this.loadingOpen();
-            axios.post('http://we-devs.api/api/v1/register',this.userInfo).then((data)=>{
+            axios.post(this.apiUrl+'api/v1/register',this.userInfo).then((data)=>{
                 if (data.data.user){
                     this.$buefy.notification.open({
                         message: 'Registration Successfully!',

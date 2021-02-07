@@ -103,6 +103,7 @@ import axios from "axios";
 export default {
     name: "EditProduct",
     mounted() {
+        this.apiUrl = this.apiBaseUrl;
         if ( localStorage.token !='' && localStorage.token){
             this.token = localStorage.token
             axios.defaults.headers.common = {'Authorization': `Bearer ${this.token}`};
@@ -112,6 +113,7 @@ export default {
     },
     data(){
         return{
+            apiUrl:'',
             id: this.$route.params.id,
             token:'',
             productInfo:{
@@ -129,10 +131,10 @@ export default {
         {
             this.loadingOpen();
             var postData = {'id': parseInt(this.id)};
-            axios.get('http://we-devs.api/api/v1/products/'+this.id, postData)
+            axios.get(this.apiUrl+'api/v1/products/'+this.id, postData)
                 .then(({data}) => {
                     this.productInfo = data.data;
-                    this.image = 'http://we-devs.api'+data.data.image;
+                    this.image = this.apiUrl+data.data.image;
                     this.productInfo.image = null;
                     this.loadingClose();
                 });
@@ -181,7 +183,7 @@ export default {
             formData.append('title', this.productInfo.title);
             formData.append('description', this.productInfo.description);
             formData.append('price', this.productInfo.price);
-            axios.post('http://we-devs.api/api/v1/products/'+this.id, formData)
+            axios.post(this.apiUrl+'api/v1/products/'+this.id, formData)
                 .then(({data}) => {
                     this.loadingClose();
                     if (data.code == 'success'){

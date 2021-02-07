@@ -45,6 +45,7 @@ import axios from "axios";
 export default {
     name: "ViewProduct",
     mounted() {
+        this.apiUrl = this.apiBaseUrl;
         if ( localStorage.token !='' && localStorage.token){
             this.token = localStorage.token
             axios.defaults.headers.common = {'Authorization': `Bearer ${this.token}`};
@@ -54,6 +55,7 @@ export default {
     },
     data(){
         return{
+            apiUrl:'',
             id: this.$route.params.id,
             token:'',
             productInfo:'',
@@ -67,9 +69,9 @@ export default {
         {
             this.loadingOpen();
             var postData = {'id': parseInt(this.id)};
-            axios.get('http://we-devs.api/api/v1/products/'+this.id, postData)
+            axios.get(this.apiUrl+'api/v1/products/'+this.id, postData)
                 .then(({data}) => {
-                    this.image = 'http://we-devs.api'+data.data.image;
+                    this.image = this.apiUrl+data.data.image;
                     this.productInfo = data.data;
                     this.loadingClose();
                 });
