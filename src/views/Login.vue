@@ -33,7 +33,12 @@
                     <div class="field-body">
                         <div class="field">
                             <div class="file has-name is-fullwidth is-right">
-                                <button type="submit" class="button is-success is-rounded is-medium">Login</button>
+                                <button type="submit" class="button is-success is-rounded">Login</button>
+                            </div>
+                            <div class="navbar-end">
+                                <p>If not registered ?
+                                    <router-link to="register" class="has-text-danger">Registration here </router-link>
+                                </p>
                             </div>
                         </div>
                     </div>

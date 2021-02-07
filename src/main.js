@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Auth from "../authentication/Auth"
-import axios from "axios"
 import router from './router'
 import store from './store'
 import Buefy from 'buefy'

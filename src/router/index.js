@@ -7,6 +7,10 @@ Vue.use(VueRouter)
 
 const routes = [
     {
+        path: '/register', name: 'Registration',
+        component: function () {return import('../views/Register')}
+    },
+    {
         path: '/login', name: 'Login',
         component: function () {return import('../views/Login')}
     },
